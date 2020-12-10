@@ -1,13 +1,14 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var lowercaseChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var lowercaseChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var num = "0123456789"
-var sym = "!@#$%^&*_+"
+var num = "0123456789";
+var sym = "!@#$%^&*_+";
 var numberCheck;
 var passwordLength;
 var uppercaseCheck;
-var specialCheck
+var specialCheck;
+var lowercaseCheck;
 
 
 
@@ -30,13 +31,44 @@ function determineLength() {
 return passwordLength;
 }
 
+//Used to see if numbers will be allowed in password
+function determineNumbers(){
+  numberCheck = prompt("Would you like to include numbers in your password? (Yes or No)");
+  numberCheck = numberCheck.toLowerCase();
 
+  if (numberCheck === null || numberCheck === ""){
+    alert("Answer either Yes or No");
+    determineNumbers
+
+  }else if (numberCheck ==="no" || numberCheck ==="n"){
+    numberCheck = false;
+    return numberCheck;
+
+  }else if (numberCheck ==="yes" || numberCheck ==="y"){
+    numberCheck = true;
+  }
+  return numberCheck;
+}
+
+function generatePassword(){
+  determineNumbers();
+  console.log(passwordLength);
+}
+
+
+
+//Used to see if special characters will be allowed in password
+function determineSpecial(){
+  specialCheck = prompt ("Would you like to include Special Characters? (Yes or No)");
+  spefialCheck = specialCheck.toLowerCase;
+}
+  
+}
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 
 }
