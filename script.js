@@ -71,6 +71,20 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 
+  if (specialCheck === null || specialCheck === "") {
+    alert ("Yes or No?");
+    determineSpecial;
+
+  }else if (specialCheck === "yes" || specialCheck ==="y"){
+    specialCheck =true;
+    return specialCheck;
+
+  }else if (specialCheck === "no" || specialCheck ==="n"){
+    specialCheck = false;
+    return specialCheck;
+
+  }
+
 }
 
 // Add event listener to generate button
