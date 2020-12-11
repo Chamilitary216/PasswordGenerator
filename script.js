@@ -28,6 +28,7 @@ function determineLength() {
 }else if (isNaN(passwordLength)){
   alert("Password length must be a number between 8-128 characters");
   determineLength();
+}
 return passwordLength;
 }
 
@@ -50,10 +51,17 @@ function determineNumbers(){
   return numberCheck;
 }
 
-function generatePassword(){
-  determineNumbers();
-  console.log(passwordLength);
+//Used to determine if Uppercase Letters will be used
+function determineUppercase () {
+  uppercaseCheck = prompt ("Would you like to use Uppercase Letters? (Yes or No");
+  uppercaseCheck = uppercaseCheck.toLowerCase();
+
+  if (uppercaseCheck === null || uppercaseCheck === ""){
+    alert ("Answer Yes or No")
+  }
+  
 }
+
 
 
 
