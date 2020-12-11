@@ -57,21 +57,51 @@ function determineUppercase () {
   uppercaseCheck = uppercaseCheck.toLowerCase();
 
   if (uppercaseCheck === null || uppercaseCheck === ""){
-    alert ("Answer Yes or No")
+    alert ("Answer Yes or No");
+    determineUppercase();
+
+  }else if (upperCase === "yes" || uppercaseCheck === "y"){
+    uppercaseCheck = true;
+    return uppercaseCheck;
+
+  }else if (uppercaseCheck === "no" || uppercaseCheck ==="n"){
+    uppercaseCheck = false;
+    return uppercaseCheck;
+
+  }else {
+    alert("Answer Yes or NO");
+    determineUppercase();
   }
-  
+  return uppercaseCheck;
 }
-
-
 
 
 //Used to see if special characters will be allowed in password
 function determineSpecial(){
   specialCheck = prompt ("Would you like to include Special Characters? (Yes or No)");
-  spefialCheck = specialCheck.toLowerCase;
-}
+  spefialCheck = specialCheck.toLowerCase;}
+
+
+  //This is how we generate a random password
+
+  var characters = lowercaseChar;
+  var password = "";
+  if (uppercaseCheck && numberCheck && specialCheck){
+    characters += uppercaseChar + numberChar + specialChar;
+
+  }else if (uppercaseCheck && numberCheck && numberCheck){
+    characters += uppercaseChar + numberChar;
+
+  }else if (numberCheck && specialCheck) {
+    characters += numberChar + specialChar;
+
+  }else if (specialCheck && uppercaseCheck) {
+    characters =+ specialCheck + uppercaseChar;
+
+  }else if (uppercaseCheck){
+  characters += uppercaseChar;
   
-}
+
 
 // Write password to the #password input
 function writePassword() {
