@@ -1,134 +1,69 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-var lowercaseChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var lowercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var num = "0123456789";
-var sym = "!@#$%^&*_+";
-var numberCheck;
-var passwordLength;
-var uppercaseCheck;
-var specialCheck;
-var lowercaseCheck;
+var abcUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   var abcUpperArr = abcUpper.split("");
+   var abcLower = "abcdefghijklmnopqrstuvwxyz";
+   var abcLowerArr = abcLower.split("");
+   var num = "0123456789";
+   var numArr = num.split("");
+   var sym = "!#$%&\()*+,-./:;<=>?@^[\\]^_`{|}~";
+   var symArr = sym.split("");
 
 
+function generatePass(){
+    var allChars = [];
+    var resultPass = "";
 
-//Used to figure out length of password
-function determineLength() {
-  passwordLength = prompt("How many characters would you like your password to be? (Note: Must be between 8-128 characters)");
+// create variables
 
-  if (passwordLength< 8) {
-    alert("Password length must be a number between 8-128 characters");
-    determineLength();
+    var Totlength = prompt("How many characters would you like your password to be? (Note: Must be between 8-128 characters");
 
-  }
-  
-  else if (passwordLength>128){
-  alert("Password length must be a number between 8-128 characters");
-  determineLength();
-}else if (isNaN(passwordLength)){
-  alert("Password length must be a number between 8-128 characters");
-  determineLength();
-}
-return passwordLength;
-}
+    if(Totlength <8 || Totlength > 128){
+        alert("It is recommended to have a password between 8 and 128 characters long!\nPlease start over.");
+    }
 
-//Used to see if numbers will be allowed in password
-function determineNumbers(){
-  numberCheck = prompt("Would you like to include numbers in your password? (Yes or No)");
-  numberCheck = numberCheck.toLowerCase();
+// This is setting conditions if/else statements
+    
+    else{
+        if(confirm("Do you want to include uppercase letters?")){
+            Array.prototype.push.apply(allChars, abcUpperArr);
+        }
 
-  if (numberCheck === null || numberCheck === ""){
-    alert("Answer either Yes or No");
-    determineNumbers
+        if(confirm("Do you want to include lowercase letters?")){
+            Array.prototype.push.apply(allChars, abcLowerArr);
+        }
 
-  }else if (numberCheck ==="no" || numberCheck ==="n"){
-    numberCheck = false;
-    return numberCheck;
+        if(confirm("Do you want to include numbers?")){
+            Array.prototype.push.apply(allChars, numArr);
+        }
 
-  }else if (numberCheck ==="yes" || numberCheck ==="y"){
-    numberCheck = true;
-  }
-  return numberCheck;
-}
+        if(confirm("Do you want to include special charactrs??")){
+            Array.prototype.push.apply(allChars, symArr);
+        }
 
-//Used to determine if Uppercase Letters will be used
-function determineUppercase () {
-  uppercaseCheck = prompt ("Would you like to use Uppercase Letters? (Yes or No");
-  uppercaseCheck = uppercaseCheck.toLowerCase();
+        if(allChars.length===0){
+            alert("You must select at lease 1 type of characters to generate a password!\nPlease start over.");
+        }
 
-  if (uppercaseCheck === null || uppercaseCheck === ""){
-    alert ("Answer Yes or No");
-    determineUppercase();
+        else{
+            for(var i=0; i<Totlength; i++){
+                var random = Math.floor(Math.random()*allChars.length);
+                resultPass += allChars[random];
+            }
+        }
+        }
 
-  }else if (upperCase === "yes" || uppercaseCheck === "y"){
-    uppercaseCheck = true;
-    return uppercaseCheck;
+// Display the result in the text field
 
-  }else if (uppercaseCheck === "no" || uppercaseCheck ==="n"){
-    uppercaseCheck = false;
-    return uppercaseCheck;
+        document.getElementById("password").innerHTML = resultPass;
+   }
 
-  }else {
-    alert("Answer Yes or NO");
-    determineUppercase();
-  }
-  return uppercaseCheck;
+//Copy to Clipboard
+
+function copyPass(){
+
+    document.querySelector("textarea").select();
+    document.execCommand("Copy");
+    alert("Password copied to clipboard!");
 }
 
-
-//Used to see if special characters will be allowed in password
-function determineSpecial(){
-  specialCheck = prompt ("Would you like to include Special Characters? (Yes or No)");
-  spefialCheck = specialCheck.toLowerCase;}
-
-  if (specialCheck === null || specialCheck === "") {
-    alert ("Yes or No?");
-    determineSpecial;
-
-  }else if (specialCheck === "yes" || specialCheck ==="y"){
-    specialCheck =true;
-    return specialCheck;
-
-  }else if (specialCheck === "no" || specialCheck ==="n"){
-    specialCheck = false;
-    return specialCheck;
-
-  }else{
-    alert("Yes or No?");
-    determineSpecial();
-  }
-    return specialCheck;
-
-
-  //This is how we generate a random password
-
-  var characters = lowercaseChar;
-  var password = "";
-  if (uppercaseCheck && numberCheck && specialCheck){
-    characters += uppercaseChar + numberChar + specialChar;
-
-  }else if (uppercaseCheck && numberCheck && numberCheck){
-    characters += uppercaseChar + numberChar;
-
-  }else if (numberCheck && specialCheck) {
-    characters += numberChar + specialChar;
-
-  }else if (specialCheck && uppercaseCheck) {
-    characters =+ specialCheck + uppercaseChar;
-
-  }else if (uppercaseCheck){
-  characters += uppercaseChar;
-
-
-  
-
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// Made onclick listener on the buttons in html file.
+// generateBtn.addEventListener("click", writePassword);
